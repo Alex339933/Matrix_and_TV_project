@@ -1,4 +1,5 @@
 # Эта функция ищет шоу по жанру
+import json
 
 
 def search_genre(genre):
@@ -35,13 +36,8 @@ def display_all():
 
 
 if __name__ == "__main__":
-    serials_db = [{"title": "Chronicles of the Galaxy", "genre": "Adventure", "seasons": 5, "rating": 8},
-                  {"title": "Mystery Island", "genre": "Fantasy", "seasons": 3, "rating": 9},
-                  {"title": "Epic Quest", "genre": "Fantasy", "seasons": 4, "rating": 7},
-                  {"title": "Crime Files", "genre": "Crime Drama", "seasons": 6, "rating": 5},
-                  {"title": "Medical Miracles", "genre": "Medical Drama", "seasons": 2, "rating": 8},
-                  {"title": "Time Travelers", "genre": "Adventure", "seasons": 4, "rating": 8},
-                  {"title": "Comedy Central", "genre": "Comedy", "seasons": 7, "rating": 9}]
+    with open("serials_db.JSON", "r", encoding="utf-8") as f:
+        serials_db = json.load(f)
     print("Выберите опции: ")
     print("1 - Искать шоу по жанру, 2 - Искать шоу по рейтингу, 3 - Информация о всех шоу")
     user_input = input()
