@@ -9,8 +9,10 @@ def search_genre(genre):
     return found_serials
 
 
-def print_dict(data):
-
+def print_dict(data: dict):
+    print('=' * 20)
+    for key, value in data.items():
+        print(f"{key.capitalize()}: {value}")
 
 # Эта функция ищет шоу по рейтингу
 
@@ -26,7 +28,10 @@ def search_rating(rating):
 # Эта функция выводит информацию про все шоу
 
 def display_all():
-    print(serials_db)
+    print("Список всех шоу: ")
+    for line in serials_db:
+        print_dict(line)
+    print('=' * 20)
 
 
 if __name__ == "__main__":
@@ -41,9 +46,23 @@ if __name__ == "__main__":
     print("1 - Искать шоу по жанру, 2 - Искать шоу по рейтингу, 3 - Информация о всех шоу")
     user_input = input()
     if user_input == "1":
-        print(search_genre("Adventure"))
+        user_genre = input("Введите нужный жанр: ")
+        results = search_genre(user_genre)
+        if results:
+            print(f"Найдено {len(results)}!")
+            for result in results:
+                print_dict(result)
+        else:
+            print("Нет такого жанра у шоооу!")
     elif user_input == "2":
-        print(search_rating(9))
+        user_rating = int(input("Введите нужный рейтинг: "))
+        results = search_rating(user_rating)
+        if results:
+            print(f"Найдено {len(results)}!")
+            for result in results:
+                print_dict(result)
+        else:
+            print("Нет такого рейтинга у шоооу!")
     elif user_input == "3":
         display_all()
     else:
